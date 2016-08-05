@@ -1,13 +1,8 @@
-import {Component, Input, Output, EventEmitter, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AngularFire, FirebaseListObservable} from 'angularfire2';
 import {ItemsList} from './items-list.component';
 import {ItemDetail} from './item-detail.component';
-
-interface Item {
-  $key: string;
-  name: string;
-  description: string;
-};
+import {Item} from './item.model';
 
 @Component({
   selector: 'items',
@@ -45,7 +40,7 @@ export class Items implements OnInit {
   }
 
   resetItem() {
-    let emptyItem: Item = {$key: null, name: '', description: ''};
+    let emptyItem: Item = {name: '', description: ''};
     this.selectedItem = emptyItem;
   }
 

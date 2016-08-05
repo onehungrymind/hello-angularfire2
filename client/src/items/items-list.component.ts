@@ -1,5 +1,5 @@
 import {Component, Input, Output, EventEmitter} from '@angular/core';
-import {Item} from './items.service';
+import {Item} from './item.model';
 
 @Component({
   selector: 'items-list',

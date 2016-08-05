@@ -1,5 +1,5 @@
 import 'core-js';
-require('zone.js');
+import 'zone.js/dist/zone';
 
 import {bootstrap} from '@angular/platform-browser-dynamic';
 import {provide} from '@angular/core';
@@ -7,7 +7,7 @@ import {HTTP_PROVIDERS} from '@angular/http';
 import {ROUTER_PROVIDERS} from '@angular/router';
 import {LocationStrategy, HashLocationStrategy} from '@angular/common';
 import {App} from './src/app';
-import {FIREBASE_PROVIDERS, defaultFirebase, AngularFire} from 'angularfire2';
+import {FIREBASE_PROVIDERS, defaultFirebase} from 'angularfire2';
 
 bootstrap(App, [
   FIREBASE_PROVIDERS,

@@ -1,4 +1,4 @@
-import {Component, Input, Output, EventEmitter, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {Routes, ROUTER_DIRECTIVES} from '@angular/router';
 import {Items} from './items/items.component';
 
@@ -13,5 +13,5 @@ import {Items} from './items/items.component';
 export class App {
   links = {
     items: ['/items']
-  }
+  };
 }

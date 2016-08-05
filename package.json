@@ -7,9 +7,8 @@
     "client": "npm run client:dev:hmr",
     "client:dev": "webpack-dev-server --inline --colors --watch --display-error-details --display-cached  --port 3001 --content-base client/public",
     "client:dev:hmr": "npm run client:dev -- --hot",
-    "server": "json-server --watch server/api/db.json",
     "test": "karma start",
-    "start": "concurrent \"npm run server\" \"npm run client\""
+    "start": "npm run client"
   },
   "dependencies": {
     "@angular/common": "2.0.0-rc.2",
