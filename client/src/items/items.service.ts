@@ -7,7 +7,7 @@ const BASE_URL = 'http://localhost:3000/items/';
 const HEADER = { headers: new Headers({ 'Content-Type': 'application/json' }) };
 
 export interface Item {
-  id: number;
+  $key: string;
   name: string;
   description: string;
 };
@@ -23,7 +23,7 @@ export class ItemsService {
   }
 
   saveItem(item: Item) {
-    return (item.id) ? this.updateItem(item) : this.createItem(item);
+    return (item.$key) ? this.updateItem(item) : this.createItem(item);
   }
 
   createItem(item: Item) {
@@ -33,13 +33,13 @@ export class ItemsService {
   }
 
   updateItem(item: Item) {
-    return this.http.put(`${BASE_URL}${item.id}`, JSON.stringify(item), HEADER)
+    return this.http.put(`${BASE_URL}${item.$key}`, JSON.stringify(item), HEADER)
       .map(res => res.json())
       .toPromise();
   }
 
   deleteItem(item: Item) {
-    return this.http.delete(`${BASE_URL}${item.id}`)
+    return this.http.delete(`${BASE_URL}${item.$key}`)
       .map(res => res.json())
       .toPromise();
   }

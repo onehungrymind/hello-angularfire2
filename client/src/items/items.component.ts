@@ -1,7 +1,13 @@
 import {Component, Input, Output, EventEmitter, OnInit} from '@angular/core';
-import {ItemsService, Item} from './items.service';
+import {AngularFire, FirebaseListObservable} from 'angularfire2';
 import {ItemsList} from './items-list.component';
 import {ItemDetail} from './item-detail.component';
+
+interface Item {
+  $key: string;
+  name: string;
+  description: string;
+};
 
 @Component({
   selector: 'items',
@@ -26,24 +32,20 @@ import {ItemDetail} from './item-detail.component';
       padding: 20px;
     }
   `],
-  providers: [ItemsService],
   directives: [ItemsList, ItemDetail]
 })
 export class Items implements OnInit {
-  items: Array<Item>;
+  items: FirebaseListObservable<Item[]>;
   selectedItem: Item;
 
-  constructor(private itemsService: ItemsService) {}
+  constructor(private af: AngularFire) {}
 
   ngOnInit() {
-    this.itemsService.loadItems()
-      .then(items => {
-        this.items = items;
-      });
+    this.items = this.af.database.list('items');
   }
 
   resetItem() {
-    let emptyItem: Item = {id: null, name: '', description: ''};
+    let emptyItem: Item = {$key: null, name: '', description: ''};
     this.selectedItem = emptyItem;
   }
 
@@ -52,35 +54,17 @@ export class Items implements OnInit {
   }
 
   saveItem(item: Item) {
-    this.itemsService.saveItem(item)
-      .then(responseItem => {
-        if (item.id) {
-          this.replaceItem(responseItem);
-        } else {
-          this.pushItem(responseItem);
-        }
-      });
+    const key = item.$key;
+    delete item.$key;
+    key ? this.items.update(key, item) : this.items.push(item);
 
     // Generally, we would want to wait for the result of `itemsService.saveItem`
     // before resetting the current item.
     this.resetItem();
   }
 
-  replaceItem(item: Item) {
-    this.items = this.items.map(mapItem => {
-      return mapItem.id === item.id ? item : mapItem;
-    });
-  }
-
-  pushItem(item: Item) {
-    this.items.push(item);
-  }
-
   deleteItem(item: Item) {
-    this.itemsService.deleteItem(item)
-      .then(() => {
-        this.items.splice(this.items.indexOf(item), 1);
-      });
+    this.items.remove(item.$key);
 
     // Generally, we would want to wait for the result of `itemsService.deleteItem`
     // before resetting the current item.

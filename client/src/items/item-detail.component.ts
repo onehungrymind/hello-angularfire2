@@ -6,8 +6,8 @@ import {Item} from './items.service';
   template: `
   <div class="item-card mdl-card mdl-shadow--2dp">
     <div class="mdl-card__title">
-      <h2 class="mdl-card__title-text" *ngIf="selectedItem.id">Editing {{originalName}}</h2>
-      <h2 class="mdl-card__title-text" *ngIf="!selectedItem.id">Create New Item</h2>
+      <h2 class="mdl-card__title-text" *ngIf="selectedItem.$key">Editing {{originalName}}</h2>
+      <h2 class="mdl-card__title-text" *ngIf="!selectedItem.$key">Create New Item</h2>
     </div>
     <div class="mdl-card__supporting-text">
       <form novalidate>

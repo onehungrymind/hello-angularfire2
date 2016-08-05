@@ -19,7 +19,10 @@ module.exports = {
   },
   module: {
     preLoaders: [
-      { test: /\.js$/, loader: 'source-map-loader', exclude: [ root('node_modules/rxjs') ] }
+      { test: /\.js$/, loader: 'source-map-loader', exclude: [
+        root('node_modules/rxjs'),
+        root('node_modules/angularfire2')
+      ] }
     ],
     loaders: [
       { test: /\.ts$/, loader: 'awesome-typescript-loader', exclude: [ /\.(spec|e2e)\.ts$/ ] },
