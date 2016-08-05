@@ -11,11 +11,11 @@ A RESTful master-detail application built using Angular 2.
 To get started run the commands below.
 
 ```bash
-$ git clone https://github.com/onehungrymind/hello-angularfire2.git
-$ cd hello-angularfire2
-$ npm install
-$ typings install
-$ npm start
+git clone https://github.com/onehungrymind/hello-angularfire2.git
+cd hello-angularfire2
+npm install
+typings install
+npm start
 ```
 
 Then navigate to [http://localhost:3000](http://localhost:3000/#/items) in your browser.
