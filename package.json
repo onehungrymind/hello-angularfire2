@@ -8,7 +8,8 @@
     "client:dev": "webpack-dev-server --inline --colors --watch --display-error-details --display-cached  --port 3001 --content-base client/public",
     "client:dev:hmr": "npm run client:dev -- --hot",
     "test": "karma start",
-    "start": "npm run client"
+    "start": "npm run client",
+    "build": "rm -rf ./build; webpack; cp -a client/public/. build/"
   },
   "dependencies": {
     "@angular/common": "2.0.0-rc.2",
