@@ -13,14 +13,14 @@ import {Item} from './item.model';
       <form novalidate>
           <div class="mdl-textfield mdl-js-textfield">
             <label>Item Name</label>
-            <input [(ngModel)]="selectedItem.name"
+            <input [(ngModel)]="selectedItem.name" name="name"
               placeholder="Enter a name"
               class="mdl-textfield__input" type="text">
           </div>
 
           <div class="mdl-textfield mdl-js-textfield">
             <label>Item Description</label>
-            <input [(ngModel)]="selectedItem.description"
+            <input [(ngModel)]="selectedItem.description" name="description"
               placeholder="Enter a description"
               class="mdl-textfield__input" type="text">
           </div>

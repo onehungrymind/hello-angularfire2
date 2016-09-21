@@ -26,8 +26,7 @@ import {Item} from './item.model';
     .items {
       padding: 20px;
     }
-  `],
-  directives: [ItemsList, ItemDetail]
+  `]
 })
 export class Items implements OnInit {
   items: FirebaseListObservable<Item[]>;
@@ -49,9 +48,10 @@ export class Items implements OnInit {
   }
 
   saveItem(item: Item) {
-    const key = item.$key;
-    delete item.$key;
-    key ? this.items.update(key, item) : this.items.push(item);
+    const {$key, name, description} = item,
+      targetItem = {name, description};
+
+    $key ? this.items.update($key, targetItem) : this.items.push(targetItem);
 
     // Generally, we would want to wait for the result of `itemsService.saveItem`
     // before resetting the current item.
