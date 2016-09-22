@@ -17,5 +17,8 @@ npm install
 typings install
 npm start
 ```
-
 Then navigate to [http://localhost:3000](http://localhost:3000/#/items) in your browser.
+
+### Building
+To build the app, run `npm run build` in the terminal. This will create a bundle in the `build` directory as well as copy the contents of the `public` directory.
+

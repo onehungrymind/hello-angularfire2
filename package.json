@@ -7,6 +7,7 @@
     "client": "npm run client:dev:hmr",
     "client:dev": "webpack-dev-server --inline --colors --watch --display-error-details --display-cached  --port 3000 --content-base client/public",
     "client:dev:hmr": "npm run client:dev -- --hot",
+    "build": "webpack && cp -r client/public/** build",
     "test": "karma start",
     "start": "npm run client"
   },
