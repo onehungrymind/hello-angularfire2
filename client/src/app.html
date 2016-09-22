@@ -4,7 +4,7 @@
       <span class="mdl-layout-title">Angular 2 <strong>+</strong> AngularFire2</span>
       <div class="mdl-layout-spacer"></div>
       <nav class="mdl-navigation">
-        <a class="mdl-navigation__link" [routerLink]="links.items">Items</a>
+        <a *ngIf="af.auth | async" class="mdl-navigation__link" href="#" (click)="logout()">Logout</a>
       </nav>
     </div>
   </header>

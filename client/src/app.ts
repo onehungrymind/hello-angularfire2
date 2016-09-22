@@ -1,4 +1,5 @@
 import {Component} from '@angular/core';
+import {AngularFire} from 'angularfire2';
 
 @Component({
   selector: 'my-app',
@@ -6,7 +7,9 @@ import {Component} from '@angular/core';
 })
 
 export class App {
-  links = {
-    items: ['/items']
-  };
+  constructor(private af: AngularFire) {}
+
+  logout() {
+    this.af.auth.logout();
+  }
 }

@@ -1,7 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {AngularFire, FirebaseListObservable} from 'angularfire2';
-import {ItemsList} from './items-list.component';
-import {ItemDetail} from './item-detail.component';
 import {Item} from './item.model';
 
 @Component({

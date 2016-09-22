@@ -1,14 +1,9 @@
 import { Routes, RouterModule } from '@angular/router';
 import { ModuleWithProviders } from "@angular/core";
-import { Items } from './items/items.component';
+import { Container } from './container/container.component';
 
 const appRoutes: Routes = [
-  {
-    path: '',
-    redirectTo: '/items',
-    pathMatch: 'full'
-  },
-  { path: 'items', component: Items }
+  { path: '', component: Container }
 ];
 
 export const appRoutingProviders: any[] = [];
