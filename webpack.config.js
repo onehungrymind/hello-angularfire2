@@ -1,4 +1,5 @@
 var webpack = require('webpack'),
+  CopyWebpackPlugin = require('copy-webpack-plugin'),
   path = require('path');
 
 function root(args) {
@@ -29,6 +30,9 @@ module.exports = {
       { test: /\.html$/, loader: 'raw' }
     ]
   },
+  plugins: [
+    new CopyWebpackPlugin([{ from: root('client/public') }])
+  ],
   devServer: {
     historyApiFallback: true
   }
