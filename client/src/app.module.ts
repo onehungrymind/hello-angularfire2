@@ -2,11 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import {
-  AngularFireModule,
-  AuthProviders,
-  AuthMethods,
-} from 'angularfire2';
+import { AngularFireModule } from 'angularfire2';
 
 import { App } from './app';
 import { Container } from './container/container.component';
@@ -23,14 +19,8 @@ const firebaseConfig = {
   storageBucket: '',
 };
 
-const myFirebaseAuthConfig = {
-  provider: AuthProviders.Password,
-  method: AuthMethods.Password
-};
-
 const angularFireConfig = AngularFireModule.initializeApp(
-  firebaseConfig,
-  myFirebaseAuthConfig
+  firebaseConfig
 );
 
 @NgModule({
