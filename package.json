@@ -7,7 +7,6 @@
     "client": "npm run client:dev:hmr",
     "client:dev": "webpack-dev-server --inline --colors --watch --display-error-details --display-cached  --port 3000 --content-base client/public",
     "client:dev:hmr": "npm run client:dev -- --hot",
-    "build": "webpack",
     "test": "karma start",
     "start": "npm run client"
   },
@@ -32,7 +31,6 @@
   "devDependencies": {
     "awesome-typescript-loader": "^0.17.0",
     "concurrently": "^2.0.0",
-    "copy-webpack-plugin": "^3.0.1",
     "core-js": "^2.4.0",
     "jasmine-core": "^2.4.1",
     "karma": "^0.13.22",
