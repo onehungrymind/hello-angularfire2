@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Items$, Item } from './items.model';
+import { Item } from './items.model';
 import { ItemsService } from './items.service';
 
 @Component({
@@ -7,7 +7,7 @@ import { ItemsService } from './items.service';
   template: `
   <div class="mdl-grid items">
     <div class="mdl-cell mdl-cell--6-col">
-      <items-list [items]="items$"
+      <items-list [items]="items"
       (selected)="selectItem($event)" (deleted)="deleteItem($event)">
       </items-list>
     </div>
@@ -27,13 +27,13 @@ import { ItemsService } from './items.service';
   `]
 })
 export class Items implements OnInit {
-  items$: Items$;
+  items: Item[];
   selectedItem: Item;
 
   constructor(private ItemsService: ItemsService) {}
 
   ngOnInit() {
-    this.items$ = this.ItemsService.getItems();
+    this.items = this.ItemsService.getItems();
   }
 
   resetItem(): void {
