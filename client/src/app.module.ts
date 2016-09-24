@@ -10,13 +10,11 @@ import {
 
 import { App } from './app';
 import { Container } from './container/container.component';
-import { Login} from './login/login.component';
 import { Items } from './items/items.component';
 import { ItemsList } from './items/items-list.component';
 import { ItemDetail } from './items/item-detail.component';
 import { routing, appRoutingProviders } from './app.routing';
 import { ItemsService } from './items/items.service';
-import { LoginService } from './login/login.service';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyALMtpDc8Y0g6aoI3DKOvmoPMH_b3oZpOU',
@@ -41,7 +39,6 @@ const angularFireConfig = AngularFireModule.initializeApp(
     Items,
     ItemsList,
     ItemDetail,
-    Login,
     Container
   ],
   imports: [
@@ -54,7 +51,6 @@ const angularFireConfig = AngularFireModule.initializeApp(
   providers: [
     appRoutingProviders,
     ItemsService,
-    LoginService
   ],
   bootstrap: [App]
 })
