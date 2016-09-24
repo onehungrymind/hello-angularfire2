@@ -1,13 +1,13 @@
-import {Component, OnInit} from '@angular/core';
-import {AngularFire, FirebaseListObservable} from 'angularfire2';
-import {Item} from './item.model';
+import { Component, OnInit } from '@angular/core';
+import { Items$, Item } from './items.model';
+import { ItemsService } from './items.service';
 
 @Component({
   selector: 'items',
   template: `
   <div class="mdl-grid items">
     <div class="mdl-cell mdl-cell--6-col">
-      <items-list [items]="items"
+      <items-list [items]="items$"
       (selected)="selectItem($event)" (deleted)="deleteItem($event)">
       </items-list>
     </div>
@@ -27,39 +27,36 @@ import {Item} from './item.model';
   `]
 })
 export class Items implements OnInit {
-  items: FirebaseListObservable<Item[]>;
+  items$: Items$;
   selectedItem: Item;
 
-  constructor(private af: AngularFire) {}
+  constructor(private ItemsService: ItemsService) {}
 
   ngOnInit() {
-    this.items = this.af.database.list('items');
+    this.items$ = this.ItemsService.getItems();
   }
 
-  resetItem() {
+  resetItem(): void {
     let emptyItem: Item = {name: '', description: ''};
     this.selectedItem = emptyItem;
   }
 
-  selectItem(item: Item) {
+  selectItem(item: Item): void {
     this.selectedItem = item;
   }
 
-  saveItem(item: Item) {
-    const {$key, name, description} = item,
-      targetItem = {name, description};
-
-    $key ? this.items.update($key, targetItem) : this.items.push(targetItem);
+  saveItem(item: Item): void {
+    this.ItemsService.saveItem(item);
 
     // Generally, we would want to wait for the result of `itemsService.saveItem`
     // before resetting the current item.
     this.resetItem();
   }
 
-  deleteItem(item: Item) {
-    this.items.remove(item.$key);
+  deleteItem(item: Item): void {
+    this.ItemsService.deleteItem(item);
 
-    // Generally, we would want to wait for the result of `itemsService.deleteItem`
+    // Generally, we would want to wait for the result of `itemsService.removeItem`
     // before resetting the current item.
     this.resetItem();
   }

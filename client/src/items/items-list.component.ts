@@ -1,10 +1,10 @@
-import {Component, Input, Output, EventEmitter} from '@angular/core';
-import {Item} from './item.model';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Items$ } from './items.model';
 
 @Component({
   selector: 'items-list',
   template: `
-  <div *ngFor="let item of items | async" (click)="selected.emit(item)"
+  <div *ngFor="let item of items$ | async" (click)="selected.emit(item)"
     class="item-card mdl-card mdl-shadow--2dp">
     <div class="mdl-card__title">
       <h2 class="mdl-card__title-text">{{item.name}}</h2>
@@ -22,7 +22,7 @@ import {Item} from './item.model';
   `
 })
 export class ItemsList {
-  @Input() items: Item[];
+  @Input() items: Items$;
   @Output() selected = new EventEmitter();
   @Output() deleted = new EventEmitter();
 }

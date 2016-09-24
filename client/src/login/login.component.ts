@@ -1,5 +1,6 @@
-import {Component, OnInit} from '@angular/core';
-import {AngularFire} from 'angularfire2';
+import { Component } from '@angular/core';
+import { LoginService } from './login.service';
+import { Credentials } from './credentials.model';
 
 @Component({
   selector: 'login',
@@ -56,25 +57,23 @@ export class Login {
   password: string = '';
   error: string = '';
 
-  constructor(private af: AngularFire) {}
+  constructor(private LoginService: LoginService) {}
 
-  login() {
-    this.af.auth
-      .login({
-        email: this.email,
-        password: this.password
-      })
+  login(): void {
+    this.LoginService
+      .login(this.getCredentials())
       .then(res => this.error = null)
       .catch(error => this.error = error.message);
   }
 
-  signUp() {
-    this.af.auth
-      .createUser({
-        email: this.email,
-        password: this.password
-      })
+  signUp(): void {
+    this.LoginService
+      .signUp(this.getCredentials())
       .then(res => this.error = null)
       .catch(error => this.error = error.message);
+  }
+
+  getCredentials(): Credentials {
+    return { email: this.email, password: this.password };
   }
 }

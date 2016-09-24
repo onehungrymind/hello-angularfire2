@@ -1,5 +1,6 @@
-import {Component} from '@angular/core';
-import {AngularFire} from 'angularfire2';
+import { Component } from '@angular/core';
+import { AngularFire } from 'angularfire2';
+import { LoginService } from './login/login.service';
 
 @Component({
   selector: 'my-app',
@@ -7,9 +8,12 @@ import {AngularFire} from 'angularfire2';
 })
 
 export class App {
-  constructor(private af: AngularFire) {}
+  constructor(
+    private LoginService: LoginService,
+    public af: AngularFire
+  ) {}
 
-  logout() {
-    this.af.auth.logout();
+  logout(): void {
+    this.LoginService.logout();
   }
 }
