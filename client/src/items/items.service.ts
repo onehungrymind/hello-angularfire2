@@ -1,43 +1,20 @@
 import { Injectable } from '@angular/core';
-import { Item } from './items.model';
-import { items } from './items';
+import { Item, Items$ } from './items.model';
+import { AngularFire } from 'angularfire2';
 
 @Injectable()
 export class ItemsService {
-  items: Item[] = items;
+  constructor(private af: AngularFire) {}
 
-  getItems(): Item[] {
-    return this.items;
+  getItems(): Items$ {
+    return this.af.database.list('items');
   }
 
   saveItem(item: Item): void {
-    const { id, name, description } = item,
-      targetItem: Item = { name, description };
-
-    if (id) {
-      this.items.forEach((i, index) => {
-        this.items[index] = i.id === id
-          ? Object.assign({}, i, targetItem)
-          : i;
-      });
-    } else {
-      targetItem.id = this.generateId();
-      this.items.push(targetItem);
-    }
+    // Save
   }
 
   deleteItem(item: Item): void {
-    this.items.forEach((i, index) => {
-      if (i.id === item.id) {
-        this.items.splice(index, 1);
-      }
-    });
-  }
-
-  generateId() {
-    const min = Math.ceil(100),
-      max = Math.floor(1000);
-
-    return Math.floor(Math.random() * (max - min + 1)) + min;
+    // Delete
   }
 }
